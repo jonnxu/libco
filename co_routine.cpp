@@ -765,6 +765,8 @@ void co_eventloop( stCoEpoll_t *ctx,pfn_co_eventloop_t pfn,void *arg )
 
 	for(;;)
 	{
+		//疑问:所有关联的fd什么时候add到ctx->iEpollFd中的？
+		//--co_poll的时候增加进来的,也就是work_co
 		int ret = co_epoll_wait( ctx->iEpollFd,result,stCoEpoll_t::_EPOLL_SIZE, 1 );
 
 		stTimeoutItemLink_t *active = (ctx->pstActiveList);
